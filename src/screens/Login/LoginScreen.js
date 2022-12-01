@@ -8,8 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { Icon, LinearProgress, Button } from "@rneui/themed";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 
 export default function LoginScreen({ navigation }) {
   return (
@@ -77,19 +76,23 @@ export default function LoginScreen({ navigation }) {
 
       {/* Login with google */}
       <View className="flex flex-row" style={styles.authAnother}>
-        <View className="w-1/2 h-14 rounded-full bg-stone-200">
-          <Image
-            source={require("../../../assets/images/google-icon.png")}
-            className="w-10 h-10 m-auto"
-          />
-        </View>
+        <TouchableOpacity className="w-1/2 h-14 rounded-full bg-stone-200">
+          <View className="h-14 rounded-full bg-stone-200">
+            <Image
+              source={require("../../../assets/images/google-icon.png")}
+              className="w-10 h-10 m-auto"
+            />
+          </View>
+        </TouchableOpacity>
 
-        <View className="w-1/2 h-14 ml-10 rounded-full bg-stone-200">
-          <Image
-            source={require("../../../assets/images/facebook-icon.png")}
-            className="w-10 h-10 m-auto"
-          />
-        </View>
+        <TouchableOpacity className="w-1/2 h-14 ml-10 rounded-full bg-stone-200">
+          <View className="w-1/2 h-14 ml-10 rounded-full bg-stone-200">
+            <Image
+              source={require("../../../assets/images/facebook-icon.png")}
+              className="w-10 h-10 m-auto"
+            />
+          </View>
+        </TouchableOpacity>
       </View>
 
       {/* create new acount */}
