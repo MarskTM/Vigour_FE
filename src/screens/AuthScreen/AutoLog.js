@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import Lottie from "lottie-react-native";
 
-
 export default function AutoLog({ navigation }) {
   useEffect(() => {
     setTimeout(() => {

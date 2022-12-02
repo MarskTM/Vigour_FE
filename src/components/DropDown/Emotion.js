@@ -34,7 +34,7 @@ export default function Emotion() {
   const [selectedEmotion, setSelectedEmotion] = React.useState(null);
 
   return (
-    <View className="mt-10">
+    <View className="mt-6">
       <DropDown title="Hôm nay bạn thấy thế nào ?" heightDrop={90}>
         <View className="flex-row justify-between items-center m-auto bg-zinc-200 rounded-md">
           <SelectedEmotionView setSelectedEmotion={setSelectedEmotion} />
