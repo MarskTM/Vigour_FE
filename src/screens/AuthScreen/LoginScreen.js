@@ -1,6 +1,5 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Icon, LinearProgress, Button } from "@rneui/themed";
 import AuthApi from "../../util/API/Auth.app";
 
@@ -11,20 +10,6 @@ const loginForm = {
 
 export default function LoginScreen({ navigation }) {
   const [showPass, SetShowPass] = useState(true);
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-  
-  const onLogin = async () => {
-    const res = dispatch(loginForm)
-    console.log(res);
-  };
-
-  useEffect(() => {
-    if (user.isLogin) {
-      navigation.navigate("HomeTabs");
-    }
-  }, [user]);
 
   return (
     <View
@@ -106,7 +91,10 @@ export default function LoginScreen({ navigation }) {
             marginHorizontal: 50,
             marginVertical: 10,
           }}
-          onPress={onLogin}
+          // onPress={onLogin}
+          onPress={() => {
+            navigation.navigate("HomeTabs");
+          }}
         />
 
         {/* Line way */}
