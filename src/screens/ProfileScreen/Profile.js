@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
 import React from "react";
-import { Icon } from "@rneui/base";
+import { Button, Icon } from "@rneui/base";
 export default function Profile({ navigation }) {
   return (
     <View
@@ -11,48 +11,64 @@ export default function Profile({ navigation }) {
     >
       {/* Button back */}
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
+        // onPress={() => {
+        //   navigation.navigate("Home");
+        // }}
       >
-        <View className="flex flex-row justify-items-center items-center mt-20 ml-10">
-          <View className="mr-4">
-            <Icon
-              name="arrow-left"
-              type="font-awesome-5"
-              size={25}
-              color="#000"
-            />
-          </View>
-          <Text className="text-3xl font-medium">Trang chủ</Text>
+        <View className="mt-14 ml-2">
+          <Text className="text-3xl font-semibold text-zinc-600">Hồ sơ của tôi</Text>
         </View>
       </TouchableOpacity>
 
       {/* Avata */}
-      <View className="w-48 h-48 ml-28 mt-10 relative">
+      <View className="h-24 ml-4 mt-6 flex-row">
         <Image
           source={require("../../../assets/images/logo.png")}
-          className="w-48 h-48 rounded-full"
+          className="w-20 h-20 rounded-full"
         ></Image>
-        <View className="absolute bottom-2 right-2">
-          <TouchableOpacity>
-            <Icon
-              name="id-badge"
-              type="font-awesome-5"
-              size={40}
-              color="#7E688B"
-            ></Icon>
-          </TouchableOpacity>
+
+        <View className="ml-4">
+          <Text className="mt-4 font-medium text-xl text-zinc-600">$Kim Mạnh</Text>
+          <Text className="mt-2 text-slate-400">11/12/2002</Text>
         </View>
       </View>
 
-      {/* View Information */}
-      <View className="h-80 bg-blue-200">
-        <TextInput
-          className="w-80 h-11 pl-4 pr-6 fs-10 m-auto text-lg bg-blue-400 rounded-full"
-          placeholder="Super Admin"
-        ></TextInput>
+      {/* Button Edit */}
+      <View className="mb-4">
+        <Button
+          title="Cập nhập hồ sơ"
+          buttonStyle={{
+            borderColor: "rgba(78, 116, 289, 1)",
+          }}
+          type="outline"
+          raised
+          titleStyle={{ color: "#9C89A8" }}
+          containerStyle={{
+            width: 400,
+            marginHorizontal: 10,
+          }}
+          onPress={() => {console.log("Cap nhat ho so")}}
+        />
       </View>
+
+      {/* View relationship Infor */}
+      <View className="h-20 flex-row border-y-2 border-slate-300">
+        <View className="m-auto">
+          <Text className="">Bài viết</Text>
+          <Text className="m-auto font-semibold">0</Text>
+        </View>
+        <View className="m-auto">
+          <Text>Nhật ký</Text>
+          <Text className="m-auto font-semibold">0</Text>
+        </View>
+        <View className="m-auto">
+          <Text>Bạn bè</Text>
+          <Text className="m-auto font-semibold">0</Text>
+        </View>
+      </View>
+
+      {/* View Profile Information */}
+
     </View>
   );
 }
