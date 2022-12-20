@@ -15,7 +15,7 @@ export default function BottomTabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 80,
+          height: 65,
           paddingBottom: 8, // Specify the height of your custom header
         },
         tabBarActiveTintColor: "#e91e63",
@@ -27,7 +27,7 @@ export default function BottomTabs() {
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" size={40} color={color} />
+            <Icon name="home" size={30} color={color} />
           ),
         }}
       />
@@ -37,7 +37,7 @@ export default function BottomTabs() {
         options={{
           tabBarLabel: "Notification",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="bell" type="font-awesome-5" size={34} color={color} />
+            <Icon name="bell" type="font-awesome-5" size={27} color={color} />
           ),
         }}
       />
@@ -51,7 +51,7 @@ export default function BottomTabs() {
             <Icon
               name="comment"
               type="font-awesome-5"
-              size={30}
+              size={25}
               color={color}
             />
           ),
@@ -64,7 +64,7 @@ export default function BottomTabs() {
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="user" type="font-awesome-5" size={30} color={color} />
+            <Icon name="user" type="font-awesome-5" size={25} color={color} />
           ),
         }}
       />
