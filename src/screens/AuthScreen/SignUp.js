@@ -1,5 +1,5 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Icon, Button } from "@rneui/themed";
 
 export default function SignUp({ navigation }) {
@@ -90,7 +90,7 @@ export default function SignUp({ navigation }) {
           titleStyle={{ fontWeight: "bold" }}
         />
 
-        <View className="h-14 flex flex-row relative top-4 left-52 bg-red-50">
+        <View className=" flex flex-row relative top-4  bg-red-50  mb-12 w-screen justify-center">
           <Text className="text-base">Đã có tài khoản ? </Text>
           <TouchableOpacity
             onPress={() => {
