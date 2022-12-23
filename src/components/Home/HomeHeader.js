@@ -4,7 +4,7 @@ import React from "react";
 export default function HomeHeader() {
   return (
     <View>
-      <View className="flex flex-row mt-20">
+      <View className="flex flex-row mt-10">
         <View className="w-2/3 mt-4 ml-6">
           <Text className="text-xl text-gray-400">Welcome Home</Text>
           <Text className="text-3xl font-semibold">$Profile Name</Text>

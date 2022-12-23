@@ -9,8 +9,8 @@ export default function Notification() {
         height: 930,
       }}
     >
-      <View classNam="mt-16 pl-8 pt-4 h-14 bg-blue-200">
-        <Text className="text-xl font-semibold">
+      <View classNam=" pl-8 pt-4 h-14 bg-blue-200 ">
+        <Text className="text-xl font-semibold mt-10">
           Thông báo
         </Text>
       </View>
