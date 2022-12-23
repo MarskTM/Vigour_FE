@@ -1,6 +1,5 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Icon, LinearProgress, Button } from "@rneui/themed";
 import AuthApi from "../../util/API/Auth.app";
 
@@ -11,30 +10,13 @@ const loginForm = {
 
 export default function LoginScreen({ navigation }) {
   const [showPass, SetShowPass] = useState(true);
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-  
-  const onLogin = async () => {
-    const res = dispatch(loginForm)
-    console.log(res);
-  };
-
-  useEffect(() => {
-    if (user.isLogin) {
-      navigation.navigate("HomeTabs");
-    }
-  }, [user]);
 
   return (
     <View
-      style={{
-        width: "100%",
-        height: 930,
-      }}
+      style={{ flex: 1, width: "100%", }}
     >
       {/* Logo app */}
-      <View className="h-48 mt-32 mb-12 m-auto rounded-md shadow-lg shadow-cyan-600/50">
+      <View className="h-48 mt-32 m-auto rounded-md shadow-lg shadow-cyan-600/50">
         <Image
           source={require("../../../assets/images/logo-test.png")}
           className="w-48 h-48 m-auto"
@@ -45,7 +27,7 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       {/*Form login */}
-      <View className="w-full h-80 flex">
+      <View className="w-full h-80 mb-20 flex">
         {/* acount */}
         <View className="flex-row items-center justify-center">
           <View className="w-8 h-11 pt-2 bg-blue-200 rounded-l-md">
@@ -84,11 +66,12 @@ export default function LoginScreen({ navigation }) {
         </View>
 
         {/* fogot password */}
-        <TouchableOpacity className="w-32 h-12 mt-4 ml-72">
-          <View>
-            <Text className="ml-2 text-sm text-blue-700">Quên mật khẩu ?</Text>
+        <TouchableOpacity className=" w-screen mt-2">
+          <View className="">
+            <Text className="text-center text-sm text-blue-700 " >Quên mật khẩu ?</Text>
           </View>
         </TouchableOpacity>
+
 
         {/* <View className="w-80 h-20 ml-14 mt-16"> */}
         <Button
@@ -106,17 +89,33 @@ export default function LoginScreen({ navigation }) {
             marginHorizontal: 50,
             marginVertical: 10,
           }}
-          onPress={onLogin}
+          // onPress={onLogin}
+          onPress={() => {
+            navigation.navigate("HomeTabs");
+          }}
         />
 
+
+
+        <View className="w-screen h-10">
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          // className="absolute top-5 right-8"
+          >
+            <Text className="text-center text-base text-blue-800 ">Tạo tài khoản mới !</Text>
+          </TouchableOpacity>
+        </View>
+
         {/* Line way */}
-        <View className="w-5/6 mt-8 ml-9">
+        <View className="w-5/6 relative ml-9">
           <LinearProgress variant="determinate" color="gray"></LinearProgress>
         </View>
       </View>
 
       {/* Login with google */}
-      <View className="flex flex-row w-full h-16">
+      <View className="flex flex-row w-full absolute bottom-12">
         <TouchableOpacity className="w-1/3 h-12 m-auto rounded-full bg-stone-200">
           <View className="h-12 flex-row justify-center items-center rounded-full bg-stone-200">
             <Image
@@ -139,16 +138,7 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       {/* create new acount */}
-      <View className="w-full h-16 mt-8">
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("SignUp");
-          }}
-          className="absolute top-8 right-8"
-        >
-          <Text className=" text-base text-blue-800">Tạo tài khoản mới !</Text>
-        </TouchableOpacity>
-      </View>
+
     </View>
   );
 }
