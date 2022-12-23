@@ -49,7 +49,7 @@ export default function LoginScreen({ navigation }) {
             placeholder="Password"
             secureTextEntry={showPass}
           />
-          <View className="absolute right-12">
+          <View className="absolute right-16">
             <TouchableOpacity
               onPress={() => {
                 SetShowPass(!showPass);
