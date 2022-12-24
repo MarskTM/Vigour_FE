@@ -1,13 +1,17 @@
 import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import React from "react";
 
-export default function HomeContent() {
+export default function HomeContent({ navigation }) {
   return (
     <View
       className="flex-col"
       backgroundImage={require("../../../assets/images/quizz-bg.jpg")}
     >
-      <TouchableOpacity className="mt-8">
+      <TouchableOpacity className="mt-8" 
+        onPress={() => {
+          navigation.navigate("Quizz");
+        }}
+      >
         <View className="w-4/5 h-32 m-auto rounded-full">
           <ImageBackground
             source={require("../../../assets/images/quizz-bg.jpg")}
@@ -22,7 +26,11 @@ export default function HomeContent() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity className="mt-6">
+      <TouchableOpacity className="mt-6"
+        onPress={() => {
+          navigation.navigate("Forum");
+        }}
+      >
         <View className="w-4/5 h-32 m-auto rounded-full">
           <ImageBackground
             source={require("../../../assets/images/forum-bg.jpg")}
@@ -37,7 +45,11 @@ export default function HomeContent() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity className="mt-6">
+      <TouchableOpacity className="mt-6"
+        onPress={() => {
+          navigation.navigate("NewsFeed");
+        }}
+      >
         <View className="w-4/5 h-32 m-auto rounded-full">
           <ImageBackground
             source={require("../../../assets/images/news-bg.jpg")}

@@ -4,14 +4,13 @@ import HomeHeader from "../../components/Home/HomeHeader";
 import Emotion from "../../components/DropDown/Emotion";
 import HomeContent from "../../components/Home/HomeContent";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const backgroundEmotion = {};
-
   return (
     <View>
-        <HomeHeader />
-        <Emotion />
-        <HomeContent />
+      <HomeHeader />
+      <Emotion />
+      <HomeContent navigation={navigation} />
     </View>
   );
 }
