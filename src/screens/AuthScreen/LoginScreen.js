@@ -1,49 +1,50 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
 import React, { useState } from "react";
 import { Icon, LinearProgress, Button } from "@rneui/themed";
-import {baseURL} from "../../util/API/URL_API";
-import {useNavigation} from "@react-navigation/native";
+import { baseURL } from "../../util/API/URL_API";
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { Dialog } from '@rneui/themed';
-import {storeData} from "../../util/AsyncStorage/StorageAsync";
+import { storeData } from "../../util/AsyncStorage/StorageAsync";
 
 export default function LoginScreen() {
   const [showPass, SetShowPass] = useState(true);
-  const [username,setUsername] = useState('')
-  const [password,setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const navigation = useNavigation();
 
-  const [isShowDialog,setIsShowDialog] = useState(false)
-  const [mess,setMess] = useState('')
-  const handleLogin=()=>{
+  const [isShowDialog, setIsShowDialog] = useState(false)
+  const [mess, setMess] = useState('')
+  const handleLogin = () => {
+
     setMess('')
-    if(!username.length>0||!password.length>0){
+    if (!username.length > 0 || !password.length > 0) {
       setMess("Vui lòng điền đầy đủ tài khoản và mật khẩu !")
     }
-    else{
-    setIsShowDialog(true)
-    let data = JSON.stringify({
-      "username": username,
-      "password": password
-    });
+    else {
+      setIsShowDialog(true)
+      let data = JSON.stringify({
+        "username": username,
+        "password": password
+      });
 
-    let config = {
-      method: 'post',
-      url: `${baseURL}user/login`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
+      let config = {
+        method: 'post',
+        url: `${baseURL}user/login`,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
 
-    axios(config)
+      axios(config)
         .then((response) => {
-          if(response.data.code==200){
+          if (response.data.code == 200) {
             setIsShowDialog(false)
-            storeData("TOKEN", response.data.token).then(()=>console.log("Thanh cong")).catch(()=>console.log("Loi"))
+            storeData("TOKEN", response.data.token).then(() => console.log("Thanh cong")).catch(() => console.log("Loi"))
             navigation.navigate("HomeTabs")
           }
-          else if(response.data.code==400){
+          else if (response.data.code == 400) {
             setMess("Sai tài khoản hoặc mật khẩu")
             setIsShowDialog(false)
           }
@@ -55,6 +56,7 @@ export default function LoginScreen() {
     }
   }
 
+  console.log(username, password)
   return (
     <View
       style={{ flex: 1, width: "100%", }}
@@ -81,7 +83,7 @@ export default function LoginScreen() {
           <TextInput
             className="w-80 h-11 pl-2 pr-12 fs-10 text-lg bg-blue-200 rounded-r-md"
             placeholder="Your email"
-            onChangeText={text=>setUsername(text)}
+            onChangeText={text => setUsername(text)}
           />
         </View>
         {/* password */}
@@ -93,7 +95,7 @@ export default function LoginScreen() {
             className="w-80 h-11 pl-2 pr-12 fs-10 text-lg bg-blue-200 rounded-r-md"
             placeholder="Password"
             secureTextEntry={showPass}
-            onChangeText={text=>setPassword(text)}
+            onChangeText={text => setPassword(text)}
           />
           <View className="absolute right-16">
             <TouchableOpacity
@@ -149,7 +151,7 @@ export default function LoginScreen() {
         <View className="w-screen h-10">
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("SignUp")
+              navigation.navigate("SignUp");
             }}
           // className="absolute top-5 right-8"
           >
@@ -163,7 +165,8 @@ export default function LoginScreen() {
         </View>
       </View>
 
-      <View className="flex flex-row w-full absolute bottom-12">
+      {/* Login with google */}
+      <View className="flex flex-row w-full h-16">
         <TouchableOpacity className="w-1/3 h-12 m-auto rounded-full bg-stone-200">
           <View className="h-12 flex-row justify-center items-center rounded-full bg-stone-200">
             <Image
@@ -188,7 +191,6 @@ export default function LoginScreen() {
       <Dialog isVisible={isShowDialog}>
         <Dialog.Loading />
       </Dialog>
-      {/* create new acount */}
 
     </View>
   );

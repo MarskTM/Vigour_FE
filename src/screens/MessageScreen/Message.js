@@ -1,7 +1,5 @@
-import { TouchableOpacity, View, Text, TextInput } from "react-native";
-import React from "react";
-import { Icon } from "@rneui/base";
-import { color } from "react-native-reanimated";
+import { View, Text } from 'react-native'
+import React from 'react'
 
 export default function Message() {
   return (
@@ -36,5 +34,5 @@ export default function Message() {
         </View>
       </View>
     </View>
-  );
+  )
 }
