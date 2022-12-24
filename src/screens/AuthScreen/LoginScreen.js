@@ -95,7 +95,7 @@ export default function LoginScreen() {
             secureTextEntry={showPass}
             onChangeText={text=>setPassword(text)}
           />
-          <View className="absolute right-12">
+          <View className="absolute right-16">
             <TouchableOpacity
               onPress={() => {
                 SetShowPass(!showPass);
