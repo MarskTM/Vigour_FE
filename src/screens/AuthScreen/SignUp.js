@@ -1,10 +1,11 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Icon, Button } from "@rneui/themed";
 
-export default function SignUp({ navigation }) {
-  const [showPass, SetShowPass] = useState(true);
+import UserInfo from "../../components/Profile/UserInfo";
+import ProfileInfo from "../../components/Profile/ProfileInfo";
 
+export default function SignUp({ navigation }) {
   return (
     <View
       style={{
