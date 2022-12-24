@@ -1,15 +1,59 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
 import React, { useState } from "react";
 import { Icon, LinearProgress, Button } from "@rneui/themed";
-import AuthApi from "../../util/API/Auth.app";
+import {baseURL} from "../../util/API/URL_API";
+import {useNavigation} from "@react-navigation/native";
+import axios from "axios";
+import { Dialog } from '@rneui/themed';
+import {storeData} from "../../util/AsyncStorage/StorageAsync";
 
-const loginForm = {
-  usernames: "",
-  passwords: "",
-};
-
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [showPass, SetShowPass] = useState(true);
+  const [username,setUsername] = useState('')
+  const [password,setPassword] = useState('')
+  const navigation = useNavigation();
+
+  const [isShowDialog,setIsShowDialog] = useState(false)
+  const [mess,setMess] = useState('')
+  const handleLogin=()=>{
+    setMess('')
+    if(!username.length>0||!password.length>0){
+      setMess("Vui lòng điền đầy đủ tài khoản và mật khẩu !")
+    }
+    else{
+    setIsShowDialog(true)
+    let data = JSON.stringify({
+      "username": username,
+      "password": password
+    });
+
+    let config = {
+      method: 'post',
+      url: `${baseURL}user/login`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+        .then((response) => {
+          if(response.data.code==200){
+            setIsShowDialog(false)
+            storeData("TOKEN", response.data.token).then(()=>console.log("Thanh cong")).catch(()=>console.log("Loi"))
+            navigation.navigate("HomeTabs")
+          }
+          else if(response.data.code==400){
+            setMess("Sai tài khoản hoặc mật khẩu")
+            setIsShowDialog(false)
+          }
+        })
+        .catch((error) => {
+          setIsShowDialog(false)
+          console.log(error);
+        });
+    }
+  }
 
   return (
     <View
@@ -48,8 +92,9 @@ export default function LoginScreen({ navigation }) {
             className="w-80 h-11 pl-2 pr-12 fs-10 text-lg bg-blue-200 rounded-r-md"
             placeholder="Password"
             secureTextEntry={showPass}
+            onChangeText={text=>setPassword(text)}
           />
-          <View className="absolute right-12">
+          <View className="absolute right-16">
             <TouchableOpacity
               onPress={() => {
                 SetShowPass(!showPass);
@@ -63,6 +108,9 @@ export default function LoginScreen({ navigation }) {
               ></Icon>
             </TouchableOpacity>
           </View>
+        </View>
+        <View className="">
+          <Text className="text-center text-sm text-red-600 " >{mess}</Text>
         </View>
 
         {/* fogot password */}
@@ -91,7 +139,7 @@ export default function LoginScreen({ navigation }) {
           }}
           // onPress={onLogin}
           onPress={() => {
-            navigation.navigate("HomeTabs");
+            handleLogin()
           }}
         />
 
@@ -115,7 +163,7 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       {/* Login with google */}
-      <View className="flex flex-row w-full absolute bottom-12">
+      <View className="flex flex-row w-full h-16">
         <TouchableOpacity className="w-1/3 h-12 m-auto rounded-full bg-stone-200">
           <View className="h-12 flex-row justify-center items-center rounded-full bg-stone-200">
             <Image
@@ -137,8 +185,20 @@ export default function LoginScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      <Dialog isVisible={isShowDialog}>
+        <Dialog.Loading />
+      </Dialog>
       {/* create new acount */}
-
+      <View className="w-full h-16 mt-8">
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("SignUp");
+          }}
+          className="absolute top-8 right-8"
+        >
+          <Text className=" text-base text-blue-800">Tạo tài khoản mới !</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

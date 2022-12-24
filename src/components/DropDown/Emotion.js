@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import DropDown from "./DropDown";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getData} from "../../util/AsyncStorage/StorageAsync";
 
 const dataEmotion = [
   {
@@ -43,6 +45,10 @@ export default function Emotion() {
     </View>
   );
 }
+
+const TOKEN  =  getData("TOKEN").then(()=>console.log("Lay thanh cong")).catch(()=>console.log("Lay that bai"))
+console.log("===TOKEN123", TOKEN);
+
 
 const SelectedEmotionView = ({ setSelectedEmotion }) => {
   return (
