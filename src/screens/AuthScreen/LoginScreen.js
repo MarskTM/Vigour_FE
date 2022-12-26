@@ -1,25 +1,71 @@
 import { TouchableOpacity, TextInput, Image, View, Text } from "react-native";
 import React, { useState } from "react";
 import { Icon, LinearProgress, Button } from "@rneui/themed";
-import AuthApi from "../../util/API/Auth.app";
+import { baseURL } from "../../util/API/URL_API";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import { Dialog } from '@rneui/themed';
+import { storeData } from "../../util/AsyncStorage/StorageAsync";
 
-const loginForm = {
-  usernames: "",
-  passwords: "",
-};
-
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [showPass, SetShowPass] = useState(true);
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const navigation = useNavigation();
+
+  const [isShowDialog, setIsShowDialog] = useState(false)
+  const [mess, setMess] = useState('')
+  const handleLogin = () => {
+
+    setMess('')
+    if (!username.length > 0 || !password.length > 0) {
+      setMess("Vui lòng điền đầy đủ tài khoản và mật khẩu !")
+    }
+    else {
+      setIsShowDialog(true)
+      let data = JSON.stringify({
+        "username": username,
+        "password": password
+      });
+
+      let config = {
+        method: 'post',
+        url: `${baseURL}user/login`,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      axios(config)
+        .then((response) => {
+          if (response.data.code == 200) {
+            setIsShowDialog(false)
+            storeData("TOKEN", response.data.token).then(() => console.log("Thanh cong")).catch(() => console.log("Loi"))
+            navigation.navigate("HomeTabs")
+          }
+          else if (response.data.code == 400) {
+            setMess("Sai tài khoản hoặc mật khẩu")
+            setIsShowDialog(false)
+          }
+        })
+        .catch((error) => {
+          setIsShowDialog(false)
+          console.log(error);
+        });
+    }
+  }
 
   return (
     <View
-      style={{ flex: 1, width: "100%", }}
+      style={{ height: 930, width: "100%", }}
+      className="flex justify-center"
     >
       {/* Logo app */}
-      <View className="h-48 mt-32 m-auto rounded-md shadow-lg shadow-cyan-600/50">
+      <View >
         <Image
           source={require("../../../assets/images/logo-test.png")}
-          className="w-48 h-48 m-auto"
+          className="m-auto mb-10"
           style={{
             borderRadius: 10,
           }}
@@ -27,7 +73,7 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       {/*Form login */}
-      <View className="w-full h-80 mb-20 flex">
+      <View className="w-full  flex ">
         {/* acount */}
         <View className="flex-row items-center justify-center">
           <View className="w-8 h-11 pt-2 bg-blue-200 rounded-l-md">
@@ -37,6 +83,7 @@ export default function LoginScreen({ navigation }) {
           <TextInput
             className="w-80 h-11 pl-2 pr-12 fs-10 text-lg bg-blue-200 rounded-r-md"
             placeholder="Your email"
+            onChangeText={text => setUsername(text)}
           />
         </View>
         {/* password */}
@@ -48,8 +95,9 @@ export default function LoginScreen({ navigation }) {
             className="w-80 h-11 pl-2 pr-12 fs-10 text-lg bg-blue-200 rounded-r-md"
             placeholder="Password"
             secureTextEntry={showPass}
+            onChangeText={text => setPassword(text)}
           />
-          <View className="absolute right-16">
+          <View className="absolute right-8">
             <TouchableOpacity
               onPress={() => {
                 SetShowPass(!showPass);
@@ -63,6 +111,9 @@ export default function LoginScreen({ navigation }) {
               ></Icon>
             </TouchableOpacity>
           </View>
+        </View>
+        <View className="">
+          <Text className="text-center text-sm text-red-600 " >{mess}</Text>
         </View>
 
         {/* fogot password */}
@@ -89,7 +140,10 @@ export default function LoginScreen({ navigation }) {
             marginHorizontal: 50,
             marginVertical: 10,
           }}
-          // onPress={onLogin}
+
+          // onPress={() => {
+          //   handleLogin()
+          // }}
           onPress={() => {
             navigation.navigate("HomeTabs");
           }}
@@ -109,13 +163,13 @@ export default function LoginScreen({ navigation }) {
         </View>
 
         {/* Line way */}
-        <View className="w-5/6 relative ml-9">
+        <View className="w-5/6  m-auto">
           <LinearProgress variant="determinate" color="gray"></LinearProgress>
         </View>
       </View>
 
       {/* Login with google */}
-      <View className="flex flex-row w-full absolute bottom-12">
+      <View className="flex flex-row  mt-5 mb-12 ">
         <TouchableOpacity className="w-1/3 h-12 m-auto rounded-full bg-stone-200">
           <View className="h-12 flex-row justify-center items-center rounded-full bg-stone-200">
             <Image
@@ -137,7 +191,9 @@ export default function LoginScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {/* create new acount */}
+      <Dialog isVisible={isShowDialog}>
+        <Dialog.Loading />
+      </Dialog>
 
     </View>
   );

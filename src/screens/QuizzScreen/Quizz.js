@@ -13,7 +13,7 @@ export default function Quizz({ navigation }) {
         {/* Header */}
         <View className="flex-row items-center justify-end">
           <TouchableOpacity
-            className="mr-24"
+            className="mr-16 pt-2 w-16 h-14"
             onPress={() => {
               navigation.navigate("Home");
             }}
@@ -61,7 +61,12 @@ export default function Quizz({ navigation }) {
       </View>
 
       <View className="w-full h-2/3 flex-row">
-        <TouchableOpacity className="w-40 ml-8 mt-8 h-36 bg-green-100 rounded-lg">
+        <TouchableOpacity
+          className="w-40 ml-8 mt-8 h-36 bg-green-100 rounded-lg"
+          onPress={() => {
+            navigation.navigate("Answer");
+          }}
+        >
           <Text className="w-full h-12 mb-8 text-xl text-center font-semibold bg-indigo-100 rounded-lg">
             Bài test PHQ-9
           </Text>
@@ -74,7 +79,12 @@ export default function Quizz({ navigation }) {
           ></Icon>
         </TouchableOpacity>
 
-        <TouchableOpacity className="w-40 ml-8 mt-8 h-36 bg-green-100 rounded-lg">
+        <TouchableOpacity
+          className="w-40 ml-8 mt-8 h-36 bg-green-100 rounded-lg"
+          onPress={() => {
+            navigation.navigate("Answer");
+          }}
+        >
           <Text className="w-full h-12 mb-8 text-xl text-center font-semibold bg-indigo-100 rounded-lg">
             Bài test RADS
           </Text>

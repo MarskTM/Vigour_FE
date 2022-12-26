@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View, Text, TextInput } from "react-native";
 import React from "react";
 import { Icon } from "@rneui/base";
 
@@ -15,7 +15,7 @@ export default function Notification() {
         Thông báo
       </Text>
 
-      
+
       <View className="mt-4">
         {/* Thông báo 1 */}
         <View className="mt-4 m-auto w-96 h-24 ">
@@ -75,7 +75,7 @@ export default function Notification() {
         </View>
       </View>
 
-       
+
     </View>
   );
 }
