@@ -9,23 +9,21 @@ export default function SignUp({ navigation }) {
   return (
     <View
       style={{
-        flex: 1,
         width: "100%",
-        height: 930,
+        flex: 1
       }}
+
+      className="flex justify-center"
     >
-      <View>
-        <Text className="w-full h-12 bg-blue-100"></Text>
-      </View>
 
-      <View>
-        <Image
-          source={require("../../../assets/images/signup-bg.png")}
-          className="w-full h-32"
-        ></Image>
-      </View>
 
-      <View className="w-full h-full bg-teal-50">
+
+
+      <View className="w-full h-full bg-teal-50 m-auto">
+        <View className="">
+          <Text className="uppercase font-semibold text-3xl text-center mt-10">Đăng ký</Text>
+        </View>
+
         <ProfileInfo />
         <UserInfo />
 
@@ -40,8 +38,8 @@ export default function SignUp({ navigation }) {
             }}
             containerStyle={{
               width: 300,
-              marginTop: "15%",
-              marginBottom: 25,
+              marginTop: "10%",
+              marginBottom: 15,
               marginHorizontal: 50,
               marginVertical: 10,
             }}
@@ -50,10 +48,10 @@ export default function SignUp({ navigation }) {
               alert("Đăng ký thành công");
             }}
           />
-        </View>
+        </View> 
 
         {/* Back to login screen */}
-        <View className="mt-8 mr-6 flex-row justify-end items-end">
+        <View className=" flex-row justify-center  items-end ">
           <Text className="text-base">Đã có tài khoản, </Text>
           <TouchableOpacity onPress={() => {
             navigation.navigate("Login");

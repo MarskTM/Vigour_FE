@@ -56,16 +56,16 @@ export default function LoginScreen() {
     }
   }
 
-  console.log(username, password)
   return (
     <View
-      style={{ flex: 1, width: "100%", }}
+      style={{ height: 930, width: "100%", }}
+      className="flex justify-center"
     >
       {/* Logo app */}
-      <View className="h-48 mt-32 m-auto rounded-md shadow-lg shadow-cyan-600/50">
+      <View >
         <Image
           source={require("../../../assets/images/logo-test.png")}
-          className="w-48 h-48 m-auto"
+          className="m-auto mb-10"
           style={{
             borderRadius: 10,
           }}
@@ -73,7 +73,7 @@ export default function LoginScreen() {
       </View>
 
       {/*Form login */}
-      <View className="w-full h-80 mb-20 flex">
+      <View className="w-full  flex ">
         {/* acount */}
         <View className="flex-row items-center justify-center">
           <View className="w-8 h-11 pt-2 bg-blue-200 rounded-l-md">
@@ -97,7 +97,7 @@ export default function LoginScreen() {
             secureTextEntry={showPass}
             onChangeText={text => setPassword(text)}
           />
-          <View className="absolute right-16">
+          <View className="absolute right-8">
             <TouchableOpacity
               onPress={() => {
                 SetShowPass(!showPass);
@@ -160,13 +160,13 @@ export default function LoginScreen() {
         </View>
 
         {/* Line way */}
-        <View className="w-5/6 relative ml-9">
+        <View className="w-5/6  m-auto">
           <LinearProgress variant="determinate" color="gray"></LinearProgress>
         </View>
       </View>
 
       {/* Login with google */}
-      <View className="flex flex-row w-full h-16">
+      <View className="flex flex-row  mt-5 mb-12 ">
         <TouchableOpacity className="w-1/3 h-12 m-auto rounded-full bg-stone-200">
           <View className="h-12 flex-row justify-center items-center rounded-full bg-stone-200">
             <Image
