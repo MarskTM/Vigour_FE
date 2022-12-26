@@ -1,73 +1,58 @@
 import { TouchableOpacity, TextInput, View, Text } from "react-native";
 import React, { useState } from "react";
-import DatePicker from "react-native-date-picker";
 import { Icon, Button } from "@rneui/themed";
+import { DatePickerInput } from 'react-native-paper-dates';
+import { Picker } from '@react-native-picker/picker';
+
+
+
+
 
 export default function ProfileInfo() {
-  const [open, setOpen] = useState(false);
-  const [birthday, setBirthday] = useState(new Date());
+
+  const [inputDate, setInputDate] = React.useState(undefined)
+
+  const [selectedOption, setSelectedOption] = useState('');
 
   return (
-    <View>
-      <View className="w-full flex-row">
+    <View className="">
+      <View className="w-full  flex-row pl-1">
+        <View className="w-3/5 h-24    ">
+          <Text className="text-base ml-6 mt-1">Họ Tên</Text>
+          <View className=" ">
+            <TouchableOpacity className="w-48 h-12 bg-zinc-50 items-center justify-center border-2 border-slate-500 rounded-lg">
+              <TextInput
+                placeholder="Họ & Tên"
+                className="pl-4 pr-6 w-full h-8 text-lg "
+                onChangeText={(e) => {
+                  console.log(e);
+                }}
+              ></TextInput>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View className=" pr-2">
+          <Text className="text-base ml-6 ">Ngày sinh</Text>
+
+          <DatePickerInput
+            className="h-11 w-36 bg-zinc-50  border-2 border-slate-500 rounded-lg mb-4 "
+            locale="vi"
+            value={inputDate}
+            onChange={(d) => setInputDate(d)}
+            inputMode="start"
+
+          />
+        </View>
+      </View>
+
+      <View className="w-full flex-row pl-1">
         <View className="w-3/5 h-24">
-          <Text className="text-base ml-6 mt-3">Họ Tên:</Text>
-          <View className="ml-5">
-            <TouchableOpacity className="w-48 h-12 bg-zinc-50 items-center justify-center border-2 border-slate-300">
-              <TextInput
-                placeholder="Họ và tên của bạn"
-                className="pl-4 pr-6 w-full h-8 text-lg "
-                onChangeText={(e) => {
-                  console.log(e);
-                }}
-              ></TextInput>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View className="w-2/5 h-24">
-          <Text className="text-base mt-3">Ngày sinh:</Text>
-          <DatePicker
-            modal="date"
-            open={open}
-            date={birthday}
-            locale="vi"
-            onConfirm={(date) => {
-              setOpen(false);
-              setBirthday(date);
-            }}
-            onCancel={() => {
-              setOpen(false);
-            }}
-          />
-          <View className="w-3/4 mt-3 h-9 bg-zinc-50 flex-row items-center border-2 border-slate-300">
-            <TextInput
-              className="text-md"
-              placeholder="dd/mm/yyyy"
-              mode="outlined"
-              editable={false}
-              disabled={true}
-              value={birthday}
-            />
-            <TouchableOpacity
-              className="ml-4"
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Icon name="calendar" type="font-awesome-5"></Icon>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-
-      <View className="w-full flex-row">
-        <View className="w-4/6 h-24">
           <Text className="text-base ml-6">Số điện thoại:</Text>
-          <View className="ml-5">
-            <TouchableOpacity className="w-60 h-12 bg-zinc-50 items-center justify-center border-2 border-slate-300">
+          <View className="">
+            <TouchableOpacity className="rounded-lg w-48 h-12 bg-zinc-50 items-center justify-center border-2 border-slate-500">
               <TextInput
-                placeholder="Sdt"
+                placeholder="SDT"
                 className="pl-4 pr-6 w-full h-8 text-lg "
                 onChangeText={(e) => {
                   console.log(e);
@@ -77,47 +62,26 @@ export default function ProfileInfo() {
           </View>
         </View>
 
-        <View className="w-2/5 h-24">
-          <Text className="text-base">Giới tính:</Text>
-          <DatePicker
-            modal="date"
-            open={open}
-            date={birthday}
-            locale="vi"
-            onConfirm={(date) => {
-              setOpen(false);
-              setBirthday(date);
-            }}
-            onCancel={() => {
-              setOpen(false);
-            }}
-          />
-          <View className="w-3/5 mt-3 h-9 bg-zinc-50 flex-row items-center border-2 border-slate-300">
-            <TextInput
-              className="text-md"
-              placeholder="Giới tính"
-              mode="outlined"
-              editable={false}
-              disabled={true}
-              value={birthday}
-            />
-            <TouchableOpacity
-              className="ml-4"
-              onPress={() => {
-                setOpen(true);
-              }}
+        <View className="w-4/6 pr-2">
+          <Text className="text-base ml-6">Giới tính</Text>
+
+          <View className="h-12 w-36 bg-zinc-50  border-2 border-slate-500 rounded-lg mb-4 flex justify-center">
+            <Picker selectedValue={selectedOption} onValueChange={(itemValue) => setSelectedOption(itemValue)}
+              className=""
             >
-              <Icon name="chevron-down" type="font-awesome-5" size={15}></Icon>
-            </TouchableOpacity>
+              <Picker.Item label="Nam" value="option1" />
+              <Picker.Item label="Nữ" value="option2" />
+              <Picker.Item label="Khác" value="option3" />
+            </Picker>
           </View>
         </View>
       </View>
 
-      <Text className="text-base ml-6 mt-2">Email:</Text>
+      <Text className="text-base ml-6 mt-2">Email</Text>
       <View className="items-center ">
-        <TouchableOpacity className="w-96 h-12 bg-zinc-50 items-center justify-center border-2 border-slate-300">
+        <TouchableOpacity className="rounded-lg w-96 h-12 bg-zinc-50 items-center justify-center border-2 border-slate-500">
           <TextInput
-            placeholder="Gmail của bạn"
+            placeholder="Email"
             className="pl-4 pr-6 w-full h-8 text-lg "
             onChangeText={(e) => {
               console.log(e);
