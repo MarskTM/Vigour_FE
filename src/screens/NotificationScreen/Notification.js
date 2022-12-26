@@ -1,5 +1,6 @@
-import { View, Text } from "react-native";
+import { TouchableOpacity, View, Text, TextInput } from "react-native";
 import React from "react";
+import { Icon } from "@rneui/base";
 
 export default function Notification() {
   return (

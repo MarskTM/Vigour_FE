@@ -10,7 +10,9 @@ export default function HomeContent({ navigation }) {
         className="flex-col mb-10 "
         backgroundImage={require("../../../assets/images/quizz-bg.jpg")}
       >
-        <TouchableOpacity className="mt-8 "
+        <TouchableOpacity className="mt-8" onPress={() => {
+          navigation.navigate("Quizz");
+        }}
         >
           <View className="w-4/5 h-32 m-auto rounded-full">
             <ImageBackground
@@ -26,7 +28,9 @@ export default function HomeContent({ navigation }) {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity className="mt-6">
+        <TouchableOpacity className="mt-6" onPress={() => {
+          navigation.navigate("Forum");
+        }}>
           <View className="w-4/5 h-32 m-auto rounded-full">
             <ImageBackground
               source={require("../../../assets/images/forum-bg.jpg")}
@@ -41,7 +45,9 @@ export default function HomeContent({ navigation }) {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity className="mt-6">
+        <TouchableOpacity className="mt-6" onPress={() => {
+          navigation.navigate("NewsFeed");
+        }}>
           <View className="w-4/5 h-32 m-auto rounded-full">
             <ImageBackground
               source={require("../../../assets/images/forum-bg.jpg")}
@@ -56,7 +62,9 @@ export default function HomeContent({ navigation }) {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity className="mt-6">
+        <TouchableOpacity className="mt-6" onPress={()=> {
+          navigation.navigate("NewsFeed");
+        }}>
           <View className="w-4/5 h-32 m-auto rounded-full">
             <ImageBackground
               source={require("../../../assets/images/news-bg.jpg")}
@@ -71,7 +79,9 @@ export default function HomeContent({ navigation }) {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity className="mt-6">
+        <TouchableOpacity className="mt-6" onPress={() => {
+          navigation.navigate("NewsFeed");
+        }}>
           <View className="w-4/5 h-32 m-auto rounded-full">
             <ImageBackground
               source={require("../../../assets/images/news-bg.jpg")}
@@ -80,7 +90,7 @@ export default function HomeContent({ navigation }) {
               imageStyle={{ borderRadius: 16 }}
             >
               <Text className="text-end text-4xl text-white font-bold mb-2 ml-6">
-                Tin tức sức khỏe
+                Bài tập yoga
               </Text>
             </ImageBackground>
           </View>
