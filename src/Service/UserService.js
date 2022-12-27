@@ -5,9 +5,6 @@ const createNewUserSevice = (data) => {
     return axios.post('https://tuanhung.site/api/v1/user/create', data)
 }
 
-
-
-
 export {
     createNewUserSevice,
 }

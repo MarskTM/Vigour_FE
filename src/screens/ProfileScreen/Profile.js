@@ -1,7 +1,65 @@
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Button, Icon } from "@rneui/base";
+import { LocaleConfig, Calendar } from "react-native-calendars";
+
 export default function Profile({ navigation }) {
+  LocaleConfig.locales["fr"] = {
+    monthNames: [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre",
+    ],
+    monthNamesShort: [
+      "Janv.",
+      "Févr.",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juil.",
+      "Août",
+      "Sept.",
+      "Oct.",
+      "Nov.",
+      "Déc.",
+    ],
+    dayNames: [
+      "Dimanche",
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi",
+      "Samedi",
+    ],
+    dayNamesShort: ["Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam."],
+    today: "Aujourd'hui",
+  };
+  LocaleConfig.defaultLocale = "fr";
+
+  const [selectedDay, setSelectedDay] = React.useState("2022-12-27");
+  let markedDates = {
+    selectedDay: {
+      selected: true,
+      marked: true,
+      selectedColor: "blue",
+    },
+    selectedDay: { marked: true },
+    selectedDay: { marked: true, dotColor: "red", activeOpacity: 0 },
+    selectedDay: { disabled: true, disableTouchEvent: true },
+  };
+
+
   return (
     <View
       style={{
@@ -11,12 +69,14 @@ export default function Profile({ navigation }) {
     >
       {/* Button back */}
       <TouchableOpacity
-        // onPress={() => {
-        //   navigation.navigate("Home");
-        // }}
+      // onPress={() => {
+      //   navigation.navigate("Home");
+      // }}
       >
         <View className="mt-14 ml-2">
-          <Text className="text-3xl font-semibold text-zinc-600">Hồ sơ của tôi</Text>
+          <Text className="text-3xl font-semibold text-zinc-600">
+            Hồ sơ của tôi
+          </Text>
         </View>
       </TouchableOpacity>
 
@@ -28,7 +88,9 @@ export default function Profile({ navigation }) {
         ></Image>
 
         <View className="ml-4">
-          <Text className="mt-4 font-medium text-xl text-zinc-600">$Kim Mạnh</Text>
+          <Text className="mt-4 font-medium text-xl text-zinc-600">
+            $Kim Mạnh
+          </Text>
           <Text className="mt-2 text-slate-400">11/12/2002</Text>
         </View>
       </View>
@@ -47,7 +109,9 @@ export default function Profile({ navigation }) {
             width: 400,
             marginHorizontal: 10,
           }}
-          onPress={() => {console.log("Cap nhat ho so")}}
+          onPress={() => {
+            navigation.navigate("UpdateProfile");
+          }}
         />
       </View>
 
@@ -67,8 +131,16 @@ export default function Profile({ navigation }) {
         </View>
       </View>
 
-      {/* View Profile Information */}
-
+      <View className="w-full h-full mt-10">
+        <Calendar
+          // Collection of dates that have to be marked. Default = {}
+          markedDates={markedDates}
+          onDayPress={(e) => {
+            setSelectedDay(e.dateString);
+            // console.log("selected day", selectedDay);
+          }}
+        />
+      </View>
     </View>
   );
 }
