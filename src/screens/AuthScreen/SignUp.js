@@ -16,7 +16,7 @@ export default function SignUp() {
     const [birthDay, setBirthDay] = useState(new Date())
     const [fullName, setFullName] = useState("")
     const [confirmPassword,setConfirmPassword] = useState("")
-    const [mess,setMess] = useState("Có lỗi trong quá trình đăng kí \n Vui lòng thử lại!")
+    const [mess,setMess] = useState("")
 
     const [isShowDialog,setIsShowDialog] = useState(false)
 
