@@ -140,7 +140,8 @@ export default function LoginScreen() {
                     }}
                     // onPress={onLogin}
                     onPress={() => {
-                        handleLogin()
+                        // handleLogin()
+                        navigation.navigate("HomeTabs")
                     }}
                 />
 
