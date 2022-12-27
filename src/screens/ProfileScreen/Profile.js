@@ -1,65 +1,63 @@
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Icon } from "@rneui/base";
 import { LocaleConfig, Calendar } from "react-native-calendars";
 
+LocaleConfig.locales["vn"] = {
+  monthNames: [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre",
+  ],
+  monthNamesShort: [
+    "Janv.",
+    "Févr.",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juil.",
+    "Août",
+    "Sept.",
+    "Oct.",
+    "Nov.",
+    "Déc.",
+  ],
+  dayNames: [
+    "Dimanche",
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+  ],
+  dayNamesShort: ["Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam."],
+  today: "Aujourd'hui",
+};
+LocaleConfig.defaultLocale = "vn";
+
+let markedDates = {
+  "2022-12-28": {
+    selected: true,
+    marked: true,
+    selectedColor: "blue",
+  },
+  "2022-12-28": { marked: true },
+  "2022-12-28": { marked: true, dotColor: "red", activeOpacity: 0 },
+  "2022-12-28": { disabled: true, disableTouchEvent: true },
+};
+
 export default function Profile({ navigation }) {
-  LocaleConfig.locales["fr"] = {
-    monthNames: [
-      "Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Août",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Décembre",
-    ],
-    monthNamesShort: [
-      "Janv.",
-      "Févr.",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juil.",
-      "Août",
-      "Sept.",
-      "Oct.",
-      "Nov.",
-      "Déc.",
-    ],
-    dayNames: [
-      "Dimanche",
-      "Lundi",
-      "Mardi",
-      "Mercredi",
-      "Jeudi",
-      "Vendredi",
-      "Samedi",
-    ],
-    dayNamesShort: ["Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam."],
-    today: "Aujourd'hui",
-  };
-  LocaleConfig.defaultLocale = "fr";
-
-  const [selectedDay, setSelectedDay] = React.useState("2022-12-27");
-  let markedDates = {
-    selectedDay: {
-      selected: true,
-      marked: true,
-      selectedColor: "blue",
-    },
-    selectedDay: { marked: true },
-    selectedDay: { marked: true, dotColor: "red", activeOpacity: 0 },
-    selectedDay: { disabled: true, disableTouchEvent: true },
-  };
-
-
   return (
     <View
       style={{
@@ -131,13 +129,13 @@ export default function Profile({ navigation }) {
         </View>
       </View>
 
-      <View className="w-full h-full mt-10">
+      <View className="w-full h-full mt-2">
         <Calendar
-          // Collection of dates that have to be marked. Default = {}
-          markedDates={markedDates}
           onDayPress={(e) => {
-            setSelectedDay(e.dateString);
-            // console.log("selected day", selectedDay);
+            navigation.navigate("Diary");
+          }}
+          markedDates={() => {
+            return markedDates;
           }}
         />
       </View>
