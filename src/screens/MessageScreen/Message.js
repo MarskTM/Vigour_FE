@@ -1,9 +1,17 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-
-export default function Message() {
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  TextInput,
+  SafeAreaView,
+  ScrollView,
+  Image,
+} from "react-native";
+import React from "react";
+import { Icon } from "@rneui/base";
+export default function Message({ navigation}) {
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
         width: "100%",
@@ -33,6 +41,41 @@ export default function Message() {
           </Text>
         </View>
       </View>
-    </View>
-  )
+
+      <ScrollView className="w-full h-4/5 mt-20">
+
+        {/* User 1*/}
+        <TouchableOpacity
+          onPress={() => {
+            // navigation.navigate("Chat");
+            console.log("nhắn tin với Thỏ bất lực");
+          }}
+          className="bg-white w-4/5 h-20 mt-2 ml-8 bg-blue-50 rounded-full flex-row items-center"
+        >
+          <Image
+            // source={{uri: "https://2sao.vietnamnetjsc.vn/2016/07/11/22/23/sno10.jpg"}}
+            source={require("../../../assets/images/logo.png")}
+            className="w-20 h-20 rounded-full"
+          />
+          <Text className="ml-5 text-lg text-gray-600">Thỏ bất lực</Text>
+        </TouchableOpacity>
+
+        {/* User 2*/}
+        <TouchableOpacity
+          onPress={() => {
+            // navigation.navigate("Chat");
+            console.log("nhắn tin với Vịt đỏng đảnh");
+          }}
+          className="bg-white w-4/5 h-20 mt-4 ml-8 bg-blue-50 rounded-full flex-row items-center"
+        >
+          <Image
+            // source={{uri: "https://2sao.vietnamnetjsc.vn/2016/07/11/22/23/sno10.jpg"}}
+            source={require("../../../assets/images/logo.png")}
+            className="w-20 h-20 rounded-full"
+          />
+          <Text className="ml-5 text-lg text-gray-600">Vịt đỏng đảnh</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
