@@ -11,6 +11,7 @@ import Quizz from "./src/screens/QuizzScreen/Quizz";
 import Answer from "./src/screens/QuizzScreen/Answer";
 import NewsFeed from "./src/screens/HomeScreen/NewsFeed";
 import UpdateProfile from "./src/screens/ProfileScreen/UpdateProfile";
+import Diary from "./src/screens/ProfileScreen/Diary";
 
 // on top of your index.android.js file
 const isAndroid = require('react-native').Platform.OS === 'android'; // this line is only needed if you don't use an .android.js file
@@ -61,6 +62,7 @@ export default function App() {
         <Stack.Screen name="NewsFeed" component={NewsFeed} />
         <Stack.Screen name="Answer" component={Answer} />
         <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
+        <Stack.Screen name="Diary" component={Diary} />
       </Stack.Navigator>
 
     </NavigationContainer>
