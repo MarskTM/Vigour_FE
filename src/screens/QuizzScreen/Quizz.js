@@ -64,7 +64,7 @@ export default function Quizz({ navigation }) {
         <TouchableOpacity
           className="w-40 ml-8 mt-8 h-36 bg-green-100 rounded-lg"
           onPress={() => {
-            navigation.navigate("Answer");
+            navigation.navigate("TestQuizz");
           }}
         >
           <Text className="w-full h-12 mb-8 text-xl text-center font-semibold bg-indigo-100 rounded-lg">
@@ -82,7 +82,7 @@ export default function Quizz({ navigation }) {
         <TouchableOpacity
           className="w-40 ml-8 mt-8 h-36 bg-green-100 rounded-lg"
           onPress={() => {
-            navigation.navigate("Answer");
+            navigation.navigate("TestQuizz");
           }}
         >
           <Text className="w-full h-12 mb-8 text-xl text-center font-semibold bg-indigo-100 rounded-lg">

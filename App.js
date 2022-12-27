@@ -8,9 +8,10 @@ import Home from "./src/screens/HomeScreen/Home";
 import BottomTabs from "./src/components/navigation/BottomTabs";
 import Forum from "./src/screens/ForumScreen/Forum";
 import Quizz from "./src/screens/QuizzScreen/Quizz";
-import Answer from "./src/screens/QuizzScreen/Answer";
+import TestQuizz from "./src/screens/QuizzScreen/TestQuizz";
 import NewsFeed from "./src/screens/HomeScreen/NewsFeed";
 import UpdateProfile from "./src/screens/ProfileScreen/UpdateProfile";
+import Answer from "./src/screens/QuizzScreen/Answer";
 import Diary from "./src/screens/ProfileScreen/Diary";
 
 // on top of your index.android.js file
@@ -60,6 +61,7 @@ export default function App() {
         <Stack.Screen name="Forum" component={Forum} />
         <Stack.Screen name="Quizz" component={Quizz} />
         <Stack.Screen name="NewsFeed" component={NewsFeed} />
+        <Stack.Screen name="TestQuizz" component={TestQuizz} />
         <Stack.Screen name="Answer" component={Answer} />
         <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
         <Stack.Screen name="Diary" component={Diary} />
